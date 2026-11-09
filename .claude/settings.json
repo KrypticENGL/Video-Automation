@@ -1,0 +1,68 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(eas build *)",
+      "Bash(docker compose *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git log *)",
+      "Bash(ffmpeg *)",
+      "Bash(ffprobe *)",
+      "PowerShell(npm *)",
+      "PowerShell(npx *)",
+      "PowerShell(node *)",
+      "PowerShell(eas build *)",
+      "PowerShell(docker compose *)",
+      "PowerShell(git status *)",
+      "PowerShell(git diff *)",
+      "PowerShell(git add *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git log *)",
+      "PowerShell(ffmpeg *)",
+      "PowerShell(ffprobe *)"
+    ],
+    "deny": [
+      "Read(.env*)",
+      "Read(!.env.example)",
+      "Edit(.env*)",
+      "Edit(!.env.example)",
+      "Bash(git push *)",
+      "PowerShell(git push *)",
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~*)",
+      "Bash(rm -rf ..*)",
+      "Bash(rm -rf *:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "code-review-graph update --skip-flows",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "code-review-graph status",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

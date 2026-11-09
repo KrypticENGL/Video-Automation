@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.expo/
+web-build/
+*.log
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+# Added by code-review-graph
+.code-review-graph/
